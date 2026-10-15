@@ -13,6 +13,7 @@
       --secondary: #0f172a;
       --accent: #06b6d4;
       --success: #16a34a;
+      --success-hover: #15803d;
       --success-light: #dcfce7;
       --warning: #d97706;
       --warning-light: #fef3c7;
@@ -240,6 +241,15 @@
 
     .btn-danger:hover {
       background-color: #b91c1c;
+    }
+
+    .btn-success {
+      background-color: var(--success);
+      color: #fff;
+    }
+
+    .btn-success:hover {
+      background-color: var(--success-hover);
     }
 
     .btn-sm {
@@ -581,7 +591,7 @@
           </div>
         </div>
         <div class="form-actions">
-          <button type="submit" class="btn btn-primary" id="submitBtn">Add Course</button>
+          <button type="submit" class="btn btn-success" id="submitBtn">Add Course</button>
           <button type="button" class="btn btn-secondary" id="cancelBtn" style="display:none;">Cancel</button>
         </div>
       </form>
@@ -863,6 +873,7 @@
 
       formTitle.textContent = 'Edit Course';
       submitBtn.textContent = 'Update Course';
+      submitBtn.classList.replace('btn-success', 'btn-primary');  // blue while editing
       cancelBtn.style.display = 'inline-block';
       editBanner.classList.add('visible');
 
@@ -877,6 +888,7 @@
       document.getElementById('status').value = 'Not Started';
       formTitle.textContent = 'Add Course';
       submitBtn.textContent = 'Add Course';
+      submitBtn.classList.replace('btn-primary', 'btn-success');  // green for adding
       cancelBtn.style.display = 'none';
       editBanner.classList.remove('visible');
     }
