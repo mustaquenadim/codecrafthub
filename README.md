@@ -19,6 +19,7 @@ CodeCraftHub allows developers to create, view, update, and delete courses they 
 - Validate dates using the `YYYY-MM-DD` format
 - Validate course status values
 - Return helpful error messages
+- CORS enabled so a browser-based dashboard can call the API
 
 ## Technologies
 
@@ -79,8 +80,10 @@ npm init -y
 ### 3. Install dependencies
 
 ```bash
-npm install express
+npm install
 ```
+
+This installs `express` and `cors` from `package.json`.
 
 ## How to Run the Application
 
@@ -462,6 +465,18 @@ The data file may have been edited incorrectly. The file should contain a valid 
 ```json
 []
 ```
+
+### cURL commands fail in Windows PowerShell
+
+In PowerShell, `curl` is an alias for `Invoke-WebRequest`, which uses different options. Type `curl.exe` instead, and put the JSON on one line with escaped quotes:
+
+```bash
+curl.exe -X POST http://localhost:5000/api/courses -H "Content-Type: application/json" -d "{\"name\":\"Learn Express\",\"description\":\"Build REST APIs.\",\"target_date\":\"2026-12-31\",\"status\":\"Not Started\"}"
+```
+
+### The dashboard shows a CORS error
+
+The browser blocked the request. Make sure the server is running the latest `app.js` (which calls `app.use(cors())`) and that `cors` is installed (`npm install`). Then restart the server.
 
 ### API returns `Route not found`
 

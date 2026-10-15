@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const fs = require("fs/promises");
 const path = require("path");
 
@@ -30,6 +31,15 @@ class AppError extends Error {
     this.statusCode = statusCode;
   }
 }
+
+/*
+  Enable CORS (Cross-Origin Resource Sharing).
+
+  Browsers block web pages from calling an API on a different origin
+  unless the API allows it. This lets the dashboard (opened from a file,
+  Bolt's preview, or another port) call this API.
+*/
+app.use(cors());
 
 /*
   Middleware that allows Express to read JSON request bodies.
